@@ -1,0 +1,323 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle, #2d2d2d, #121212);
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.7);
+    max-width: 100%;
+    width: 90%;
+    text-align: center;
+    box-sizing: border-box;
+    max-width: 700px;
+}
+
+.title {
+    font-size: 36px;
+    color: #ffffff;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9);
+}
+
+.option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.option .custom-radio {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    transition: background-color 0.3s;
+}
+
+.option input:checked+.custom-radio {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+}
+
+.option input:checked+.custom-radio::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    display: block;
+}
+
+.option span {
+    font-size: 22px;
+    color: #e0e0e0;
+}
+
+.option:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.upload-section {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.file-input {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: #444;
+    color: #e0e0e0;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.file-input:hover {
+    background-color: #555;
+    border: 1px solid #666;
+}
+
+.upload-btn {
+    background: linear-gradient(135deg, #ff8c00, #ff6f61);
+    color: #ffffff;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+    transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-btn .btn-text {
+    z-index: 1;
+}
+
+.upload-btn .spinner {
+    display: none;
+    position: absolute;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #ffffff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+.upload-btn:hover {
+    background: linear-gradient(135deg, #ff6f61, #e84c3d);
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.upload-btn:hover::after {
+    transform: translate(-50%, -50%) rotate(45deg) scale(0.8);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.results {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #e0e0e0;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 700px;
+        width: 80%;
+    }
+}
+
+
+/* loader */
+/* From Uiverse.io by Bethel-nz */
+.loader {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    transition: opacity 0.75s, visibility 0.75s;
+    z-index: 99999;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.pl,
+.pl__worm {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.pl {
+    animation-name: bump9;
+    animation-timing-function: linear;
+    width: 8em;
+    height: 8em;
+}
+
+.pl__ring {
+    stroke: hsla(var(--hue), 10%, 10%, 0.1);
+    transition: stroke 0.3s;
+}
+
+.pl__worm {
+    animation-name: worm9;
+    animation-timing-function: cubic-bezier(0.42, 0.17, 0.75, 0.83);
+}
+
+/* Animations */
+@keyframes bump9 {
+
+    from,
+    42%,
+    46%,
+    51%,
+    55%,
+    59%,
+    63%,
+    67%,
+    71%,
+    74%,
+    78%,
+    81%,
+    85%,
+    88%,
+    92%,
+    to {
+        transform: translate(0, 0);
+    }
+
+    44% {
+        transform: translate(1.33%, 6.75%);
+    }
+
+    53% {
+        transform: translate(-16.67%, -0.54%);
+    }
+
+    61% {
+        transform: translate(3.66%, -2.46%);
+    }
+
+    69% {
+        transform: translate(-0.59%, 15.27%);
+    }
+
+    76% {
+        transform: translate(-1.92%, -4.68%);
+    }
+
+    83% {
+        transform: translate(9.38%, 0.96%);
+    }
+
+    90% {
+        transform: translate(-4.55%, 1.98%);
+    }
+}
+
+@keyframes worm9 {
+    from {
+        stroke-dashoffset: 10;
+    }
+
+    25% {
+        stroke-dashoffset: 295;
+    }
+
+    to {
+        stroke-dashoffset: 1165;
+    }
+}
+
+
+
+/* ------------------ */
+
+
+/* Style for the detection button */
+#start-detection {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff8c00;
+    /* Adjust button color as needed */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#start-detection:hover {
+    background-color: #ff6f61;
+    /* Adjust hover color as needed */
+}

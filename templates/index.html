@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLOv8 Detection</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+    
+    <div class="container">
+
+        <h1 class="title">YOLOv8 Object Detection</h1>
+        
+        <div class="option-group">
+            <label class="option" for="upload">
+                <input type="radio" id="upload" name="detection-type" value="upload" checked>
+                <span class="custom-radio"></span>
+                <span>Upload Image/Video</span>
+            </label>
+            <label class="option" for="live">
+                <input type="radio" id="live" name="detection-type" value="live">
+                <span class="custom-radio"></span>
+                <span>Live Camera Detection</span>
+            </label>
+        </div>
+
+        <div class="upload-section" id="upload-section">
+            <form action="/upload" method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" name="file" accept="image/*,video/*" required id="file-upload" class="file-input">
+                <button type="submit" class="upload-btn">
+                    <span class="btn-text">Upload and Detect</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Live Camera Detection Section -->
+        <div id="live-section" style="display: none;">
+            <button class="upload-btn" id="start-detection">
+                Start Detection
+            </button>
+        </div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+
+    <!-- ---------- loader ------------ -->
+
+    <div class="loader">
+    
+        <!-- From Uiverse.io by PhilibertGentien -->
+        <svg xmlns="http://www.w3.org/2000/svg" height="128px" width="128px" viewBox="0 0 128 128" class="pl">
+            <defs>
+            <linearGradient y2="1" x2="0" y1="0" x1="0" id="pl-grad">
+                <stop stop-color="#ff8c00" offset="0%"></stop>
+                <stop stop-color="#ff6f61" offset="100%"></stop>
+            </linearGradient>
+            </defs>
+            <circle stroke-linecap="round" stroke-width="16" stroke="hsla(0,10%,10%,0.1)" fill="none" cy="64" cx="64" r="56" class="pl__ring"></circle>
+            <path stroke-dashoffset="10" stroke-dasharray="44 1111" stroke-linejoin="round" stroke-linecap="round" stroke-width="16" stroke="url(#pl-grad)" fill="none" d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z" class="pl__worm"></path>
+        </svg>
+  
+    </div>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function() {
+            document.querySelector('.spinner').style.display = 'block';
+            document.querySelector('.btn-text').style.visibility = 'hidden';
+        });
+
+        window.addEventListener("load", () => {
+        const loader = document.querySelector(".loader");
+
+        // Set a timeout to hide the loader after 3 seconds (3000 milliseconds)
+        setTimeout(() => {
+            loader.classList.add("loader-hidden");
+
+            loader.addEventListener("transitionend", () => {
+                // Ensure the loader element is removed after the transition
+                document.body.removeChild(loader);
+            });
+        }, 1000); // 3000 milliseconds = 3 seconds
+        });
+
+
+
+
+        // -------------------------------------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadRadio = document.getElementById('upload');
+            const liveRadio = document.getElementById('live');
+            const uploadSection = document.getElementById('upload-section');
+            const liveSection = document.getElementById('live-section');
+            const startDetectionButton = document.getElementById('start-detection');
+
+            function toggleSections() {
+                if (uploadRadio.checked) {
+                    uploadSection.style.display = 'block';
+                    liveSection.style.display = 'none';
+                } else if (liveRadio.checked) {
+                    uploadSection.style.display = 'none';
+                    liveSection.style.display = 'block';
+                }
+            }
+
+            uploadRadio.addEventListener('change', toggleSections);
+            liveRadio.addEventListener('change', toggleSections);
+
+            startDetectionButton.addEventListener('click', function() {
+                window.location.href = '/live_detection';
+            });
+
+
+            // Initial state
+            toggleSections();
+        });
+
+        // -------------------------------------------------------
+
+        alert("You can upload an image or video for detection. Please note that videos may take longer to process depending on their length and your CPU/GPU performance")
+    </script>
+</body>
+</html>

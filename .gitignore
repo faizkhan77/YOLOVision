@@ -1,0 +1,22 @@
+# Ignore the virtual environment if it exists
+venv/
+env/
+myworld/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Dockerfile and Dockerignore itself
+Dockerfile
+.dockerignore
+
+# Ignore local environment files
+*.log
+*.env
+
+# Ignore runs/ folder
+runs/
+captured_images/
+images_videos/

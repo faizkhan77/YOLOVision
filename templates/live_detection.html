@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: radial-gradient(circle, #2d2d2d, #121212);
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.7);
+            max-width: 100%;
+            width: 90%;
+            text-align: center;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9);
+        }
+
+        #video-container {
+            width: 100%;
+            max-width: 800px;
+            height: 450px; /* Landscape aspect ratio (16:9) */
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            border: 1px solid #555;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #live-stream {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #stop-detection {
+            background: linear-gradient(135deg, #ff8c00, #ff6f61);
+            color: #ffffff;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+            transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        #stop-detection::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%) rotate(45deg);
+            transition: transform 0.4s;
+        }
+
+        #stop-detection:hover {
+            background: linear-gradient(135deg, #ff6f61, #e84c3d);
+            transform: translateY(-4px);
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        #stop-detection:hover::after {
+            transform: translate(-50%, -50%) rotate(45deg) scale(0.8);
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 700px;
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #video-container {
+                height: 300px; /* Adjust height for smaller screens */
+            }
+
+            #stop-detection {
+                font-size: 16px;
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Live Camera Detection</h1>
+        </div>
+        <div id="video-container">
+            <img id="live-stream" src="{{ url_for('video_feed') }}" alt="Live Camera Feed">
+        </div>
+        <button id="stop-detection">Stop Detection</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stopDetectionButton = document.getElementById('stop-detection');
+
+            stopDetectionButton.addEventListener('click', function() {
+                window.location.href = '/';
+            });
+
+            // Optional: Handle key press to stop detection
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {  // Example: use the Escape key to stop detection
+                    window.location.href = '/';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
