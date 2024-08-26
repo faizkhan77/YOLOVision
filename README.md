@@ -6,6 +6,12 @@ This repository contains a Flask-based web application for object detection usin
 
 The YOLOv8 Object Detection App allows users to perform real-time object detection through a user-friendly interface. Whether uploading images/videos or utilizing live webcam detection, users can view and analyze object detection results directly in their web browser. This project leverages the powerful YOLOv8 model to provide accurate and efficient object detection capabilities.
 
+## Object Detection Demo
+
+Here is a demonstration of the object detection in action:
+
+![Object Detection Demo](https://github.com/faizkhan77/object-detection-yolov8/blob/master/demo.gif)
+
 ## Project Structure
 
 - **`app.py`**: Contains the main Flask backend code that handles all server-side logic, including routing and processing.
