@@ -12,6 +12,11 @@ Here is a demonstration of the object detection in action:
 
 ![Object Detection Demo](https://github.com/faizkhan77/object-detection-yolov8/blob/master/demo.gif)
 
+
+Here is a live webcam detection demonstration:
+
+![Live Webcam](https://github.com/faizkhan77/object-detection-yolov8/blob/master/live.gif)
+
 ## Project Structure
 
 - **`app.py`**: Contains the main Flask backend code that handles all server-side logic, including routing and processing.
