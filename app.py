@@ -70,7 +70,10 @@ def upload_file():
                 if not ret:
                     break
 
-                results = model.predict(frame)
+                # Convert the frame from BGR to RGB
+                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+                results = model.predict(rgb_frame)
                 frame_with_detections = results[0].plot()
                 out.write(
                     frame_with_detections[..., ::-1]
