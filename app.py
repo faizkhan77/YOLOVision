@@ -15,7 +15,8 @@ app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["OUTPUT_FOLDER"] = OUTPUT_FOLDER
 
 # Load the YOLOv8 model
-model = YOLO("yolov8n.pt")
+# model = YOLO("yolov8n.pt")
+model = YOLO("yolo11m.pt")
 
 
 # Route for the home page
