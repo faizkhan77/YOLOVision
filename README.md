@@ -1,27 +1,30 @@
-# YOLOv8 Object Detection App
+# YOLOVision Object Detection
 
-This repository contains a Flask-based web application for object detection using the YOLOv8 model, combined with FastAPI and OpenCV. The application supports object detection in images, videos, and live webcam streams.
+This repository contains a Flask-based web application for object detection using the **YOLO11** model, combined with FastAPI and OpenCV. The application supports object detection in images, videos, and live webcam streams.
+
+**Note:** This repository has been updated to use **YOLO11** for more accurate and precise object detection. Previously, the app was powered by **YOLOv8**.
 
 ## Overview
 
-The YOLOv8 Object Detection App allows users to perform real-time object detection through a user-friendly interface. Whether uploading images/videos or utilizing live webcam detection, users can view and analyze object detection results directly in their web browser. This project leverages the powerful YOLOv8 model to provide accurate and efficient object detection capabilities.
+The YOLOVision Object Detection App allows users to perform real-time object detection through a user-friendly interface. Whether uploading images/videos or utilizing live webcam detection, users can view and analyze object detection results directly in their web browser. This project leverages the powerful **YOLO11** model to provide advanced, accurate, and efficient object detection capabilities.
+
 
 ## Object Detection Demo
 
 Here is a demonstration of the object detection in action:
 
-![Object Detection Demo](https://github.com/faizkhan77/object-detection-yolov8/blob/master/demo.gif)
+![Object Detection Demo](https://github.com/faizkhan77/YOLOVision/blob/master/demo.gif)
 
 
 Here is a live webcam detection demonstration:
 
-![Live Webcam](https://github.com/faizkhan77/object-detection-yolov8/blob/master/live.gif)
+![Live Webcam](https://github.com/faizkhan77/YOLOVision/blob/master/live.gif)
 
 ## Project Structure
 
 - **`app.py`**: Contains the main Flask backend code that handles all server-side logic, including routing and processing.
 - **`requirements.txt`**: Lists all the Python dependencies required for the application.
-- **`yolov8n.pt`**: The pre-trained YOLOv8 model used for object detection.
+- **`yolo11m.pt`**: The pre-trained YOLO11 model used for object detection.
 - **`templates/`**: Contains HTML files for the user interface of the application.
 - **`static/`**: Includes static files such as CSS and output folders.
   - **`css/style.css`**: Styling for the application's UI.
@@ -35,7 +38,7 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/faizkhan77/object-detection-yolov8.git
+   git clone https://github.com/faizkhan77/YOLOVision.git
    ```
 
 2. **Install dependencies:**
@@ -67,14 +70,19 @@ The project is containerized using Docker to ensure consistent environments acro
 
 To pull the Docker image, use:
 ```bash
-docker pull faizkhan7/object-detector-yolov8:latest
+docker pull faizkhan7/yolovision
 ```
 
 ### Running the Docker Container
 
 Run the Docker container with:
 ```bash
-docker run -p 5000:5000 faizkhan7/object-detector-yolov8:latest
+docker run -p 5000:5000 faizkhan7/yolovision
+```
+
+To pull the previous version where we used YOLOv8, use:
+```bash
+docker pull faizkhan7/object-detector-yolov8
 ```
 
 ## Contribution
